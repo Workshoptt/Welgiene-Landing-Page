@@ -1,36 +1,162 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Welgiene</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SaaS Platform Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for demo */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-		<!-- Header -->
-			<header id="header">
-				<h1>Welgiene</h1>
-				<p>A simple platform for telling the world you're ready to take on your wellbeing<br />
-				your next big thing. Brought to you by Thrustport</b>.</p>
-			</header>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md fixed w-full z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-blue-600">SaaSify</a>
+      <div class="hidden md:flex space-x-8">
+        <a href="#features" class="hover:text-blue-600 transition">Features</a>
+        <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+        <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+        <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Get Started</a>
+      </div>
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+      <a href="#features" class="block px-6 py-3 border-b border-gray-200 hover:bg-gray-100">Features</a>
+      <a href="#pricing" class="block px-6 py-3 border-b border-gray-200 hover:bg-gray-100">Pricing</a>
+      <a href="#contact" class="block px-6 py-3 border-b border-gray-200 hover:bg-gray-100">Contact</a>
+      <a href="#" class="block px-6 py-3 text-center bg-blue-600 text-white hover:bg-blue-700">Get Started</a>
+    </div>
+  </nav>
 
-		<!-- Signup Form -->
-			<form id="signup-form" method="post" action="#">
-				<input type="email" name="email" id="email" placeholder="Email Address" />
-				<input type="submit" value="Sign Up" />
-			</form>
+  <!-- Hero Section -->
+  <header class="pt-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center md:space-x-12">
+      <div class="md:w-1/2 text-center md:text-left space-y-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+          Empower Your Business with SaaSify
+        </h1>
+        <p class="text-lg md:text-xl text-blue-200">
+          The all-in-one platform to streamline your workflow, increase productivity, and grow your business.
+        </p>
+        <div class="space-x-4">
+          <a href="#" class="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded shadow hover:bg-gray-100 transition">
+            Get Started
+          </a>
+          <a href="#features" class="inline-block border border-white px-6 py-3 rounded hover:bg-white hover:text-blue-700 transition">
+            Learn More
+          </a>
+        </div>
+      </div>
+      <div class="md:w-1/2 mt-10 md:mt-0">
+        <img src="https://cdn.dribbble.com/users/503139/screenshots/15492590/media/7d1e8d3f2a6d0f8b5a8d5c4a9d3e3d48.png" alt="Dashboard preview" class="mx-auto max-w-full rounded-lg shadow-lg" />
+      </div>
+    </div>
+  </header>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<ul class="icons">
-					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-					<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
-			</footer>
+  <!-- Features Section -->
+  <section id="features" class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold text-center mb-12">Features That Make a Difference</h2>
+    <div class="grid gap-12 md:grid-cols-3">
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg transition">
+        <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+        <h3 class="text-xl font-semibold mb-2">Real-time Analytics</h3>
+        <p class="text-gray-600">Get instant insights into your data with our powerful analytics dashboard.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg transition">
+        <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 8c-1.657 0-3 1.343-3 3v4a3 3 0 006 0v-4c0-1.657-1.343-3-3-3z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 8V6m0 0a2 2 0 012 2v2a2 2 0 01-2 2m0-6a2 2 0 00-2 2v2a2 2 0 002 2"></path>
+        </svg>
+        <h3 class="text-xl font-semibold mb-2">Secure Payments</h3>
+        <p class="text-gray-600">Handle transactions safely with our fully integrated payment gateway.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg transition">
+        <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M16 7a4 4 0 00-8 0v4a4 4 0 008 0V7z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 14v7"></path>
+        </svg>
+        <h3 class="text-xl font-semibold mb-2">24/7 Support</h3>
+        <p class="text-gray-600">Our dedicated support team is always ready to help you anytime, anywhere.</p>
+      </div>
+    </div>
+  </section>
 
-		<!-- Scripts -->
-			<script src="assets/js/main.js"></script>
+  <!-- Call to Action -->
+  <section id="pricing" class="bg-blue-600 text-white py-20">
+    <div class="max-w-3xl mx-auto text-center space-y-6 px-6">
+      <h2 class="text-4xl font-extrabold">Ready to transform your business?</h2>
+      <p class="text-lg max-w-xl mx-auto">Start your free trial today and see how SaaSify can help you grow.</p>
+      <a href="#" class="inline-block bg-white text-blue-600 font-bold px-8 py-4 rounded shadow hover:bg-gray-100 transition">Start Free Trial</a>
+    </div>
+  </section>
 
-	</body>
+  <!-- Footer -->
+  <footer id="contact" class="bg-gray-800 text-gray-300 py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-bold text-lg mb-4">SaaSify</h3>
+        <p>© 2025 SaaSify, Inc. All rights reserved.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4">Contact</h3>
+        <p>Email: support@saasify.com</p>
+        <p>Phone: +1 (555) 123-4567</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-4">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" aria-label="Twitter" class="hover:text-white transition">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="hover:text-white transition">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.87v-7h-3v-3h3v-2a3 3 0 013-3h3v3h-3v2h3l-1 3h-2v7A10 10 0 0022 12z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-white transition">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 3a2 2 0 110 4 2 2 0 010-4z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
 </html>
