@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* High contrast black and white with light blue (Sherwin Williams Upward) accent */
+  --background: 0 0% 98%;
+  --foreground: 0 0% 10%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  
+  /* Light blue primary (Sherwin Williams Upward SW 6239) */
+  --primary: 199 64% 49%;
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 199 70% 60%;
+  
+  /* Black secondary */
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --secondary-hover: 0 0% 25%;
+  
+  /* Light blue accent (same as primary for cohesion) */
+  --accent: 199 64% 49%;
+  --accent-foreground: 0 0% 100%;
+  --accent-hover: 199 70% 60%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 0 0% 15%;
+  --radius: 0.5rem;
+  
+  /* Chart colors */
+  --chart-1: 199 64% 49%;
+  --chart-2: 0 0% 15%;
+  --chart-3: 199 64% 65%;
+  --chart-4: 0 0% 50%;
+  --chart-5: 199 40% 30%;
+
+  /* Sidebar colors */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 0 0% 10%;
+  --sidebar-primary: 199 64% 49%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 199 64% 49%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 0 0% 90%;
+  --sidebar-ring: 0 0% 15%;
+}
+
+.dark {
+  /* High contrast black and white with light blue (Sherwin Williams Upward) accent - Dark Mode */
+  --background: 0 0% 10%;
+  --foreground: 0 0% 98%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 98%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 98%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  
+  /* Light blue primary (Sherwin Williams Upward SW 6239) - brighter for dark mode */
+  --primary: 199 80% 60%;
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 199 90% 70%;
+  
+  /* White secondary for dark mode */
+  --secondary: 0 0% 90%;
+  --secondary-foreground: 0 0% 10%;
+  --secondary-hover: 0 0% 80%;
+  
+  /* Light blue accent (same as primary for cohesion) */
+  --accent: 199 80% 60%;
+  --accent-foreground: 0 0% 100%;
+  --accent-hover: 199 90% 70%;
+  
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 0 0% 80%;
+  --radius: 0.5rem;
+  
+  /* Chart colors */
+  --chart-1: 199 80% 60%;
+  --chart-2: 0 0% 90%;
+  --chart-3: 199 60% 75%;
+  --chart-4: 0 0% 70%;
+  --chart-5: 199 70% 40%;
+
+  /* Sidebar colors */
+  --sidebar-background: 0 0% 8%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 199 80% 60%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 199 80% 60%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 0 0% 20%;
+  --sidebar-ring: 0 0% 80%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Gradient backgrounds for high contrast black and white with light blue highlights */
+.bg-gradient-primary {
+  @apply bg-gradient-to-r from-primary to-primary-hover;
+}
+
+.bg-gradient-secondary {
+  @apply bg-gradient-to-r from-secondary to-secondary-hover;
+}
+
+.bg-gradient-accent {
+  @apply bg-gradient-to-r from-accent to-accent-hover;
+}
+
+/* High contrast specific gradients */
+.bg-gradient-contrast {
+  @apply bg-gradient-to-r from-primary to-secondary;
+}
+
+/* Hover utility classes */
+.text-primary-hover {
+  color: hsl(var(--primary-hover));
+}
+
+.text-secondary-hover {
+  color: hsl(var(--secondary-hover));
+}
+
+.text-accent-hover {
+  color: hsl(var(--accent-hover));
+}
+
+.bg-primary-hover {
+  background-color: hsl(var(--primary-hover));
+}
+
+.bg-secondary-hover {
+  background-color: hsl(var(--secondary-hover));
+}
+
+.bg-accent-hover {
+  background-color: hsl(var(--accent-hover));
+}
+
+/* Text gradient utilities */
+.text-gradient-primary {
+  @apply bg-gradient-to-r from-primary to-primary-hover text-transparent bg-clip-text;
+}
+
+.text-gradient-contrast {
+  @apply bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text;
+}
+
+/* Border gradient utilities */
+.border-gradient-primary {
+  position: relative;
+}
+
+.border-gradient-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 2px; 
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary-hover)));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.border-gradient-contrast {
+  position: relative;
+}
+
+.border-gradient-contrast::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 2px; 
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}
