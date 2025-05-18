@@ -100,13 +100,18 @@
   </style>
 </head>
 <body>
-  <nav>
+<a href="index.html" class="logo-link" aria-label="Home">
+      <!-- Remix logo SVG (light/glowing version for dark background) -->
+      <svg class="logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" focusable="false">
+        <path d="M256 0C114.624 0 0 114.624 0 256s114.624 256 256 256 256-114.624 256-256S397.376 0 256 0zm0 472c-119.296 0-216-96.704-216-216S136.704 40 256 40s216 96.704 216 216-96.704 216-216 216z"/>
+        <path d="M352 176H160v32h192v-32zm0 64H160v32h192v-32zm0 64H160v32h192v-32z"/>
+      </svg>
+    </a>
     <a href="index.html">Home</a>
     <a href="dimensions.html">Dimensions</a>
-    <a href="docs.html">Docs</a>
-    <a href="community.html">Community</a>
-    <a href="pricing.html">Pricing</a>
-  </nav>
+    <a class="disabled" tabindex="-1" aria-disabled="true">Docs</a>
+    <a class="disabled" tabindex="-1" aria-disabled="true">Community</a>
+    <a class="disabled" tabindex="-1" aria-disabled="true">Pricing</a>
   <div class="container">
     <h1>Dimensions of Wellness</h1>
     <div class="dimensions-grid">
