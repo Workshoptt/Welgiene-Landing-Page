@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Welgiene Style Landing Page - Dark Mode</title>
+<title>Dimensions of Wellness - Sophisticated Cards</title>
 <style>
   /* Reset & base */
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #0a0a0a;
     color: #e0e0e0;
     line-height: 1.6;
@@ -19,325 +18,92 @@
     display: flex;
     flex-direction: column;
   }
-  a {
-    color: #00ff99;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  a:hover, a:focus {
-    color: #00cc77;
-    outline: none;
-  }
 
   /* Container */
   .container {
     max-width: 960px;
-    margin: 0 auto;
+    margin: 3rem auto 4rem auto;
     padding: 0 1rem;
     width: 100%;
   }
 
-  /* Header & Navigation */
-  header {
-    border-bottom: 1px solid #222;
-    background: #111;
-  }
-  nav {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 1rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  nav a.logo {
-    font-weight: 900;
-    font-size: 1.5rem;
-    letter-spacing: -0.05em;
-    color: #00ff99;
-    text-decoration: none;
-  }
-
-  /* Hamburger menu styles */
-  #menu-toggle {
-    display: none;
-  }
-  label[for="menu-toggle"] {
-    display: none;
-    cursor: pointer;
-    width: 30px;
-    height: 22px;
-    position: relative;
-  }
-  label[for="menu-toggle"] span,
-  label[for="menu-toggle"] span::before,
-  label[for="menu-toggle"] span::after {
-    display: block;
-    background: #00ff99;
-    position: absolute;
-    height: 4px;
-    width: 100%;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-  label[for="menu-toggle"] span {
-    top: 50%;
-    margin-top: -2px;
-  }
-  label[for="menu-toggle"] span::before {
-    content: '';
-    top: -10px;
-  }
-  label[for="menu-toggle"] span::after {
-    content: '';
-    top: 10px;
-  }
-
-  /* Navigation links */
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  .nav-links a {
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-  }
-  .nav-links a:hover,
-  .nav-links a:focus {
-    background-color: #002b00;
-  }
-  .nav-links span.disabled {
-    color: #888;
-    opacity: 0.5;
-    cursor: not-allowed;
-    text-decoration: line-through;
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-  }
-
-  /* Mobile menu hidden by default */
-  @media (max-width: 700px) {
-    label[for="menu-toggle"] {
-      display: block;
-    }
-    .nav-links {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background: #111;
-      flex-direction: column;
-      gap: 0;
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.3s ease;
-      border-bottom: 1px solid #222;
-      border-top: 1px solid #222;
-      z-index: 10;
-    }
-    .nav-links a,
-    .nav-links span.disabled {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #222;
-    }
-    #menu-toggle:checked + label + .nav-links {
-      max-height: 500px; /* enough to show all links */
-    }
-  }
-
-  /* Main content */
-  main {
-    flex-grow: 1;
-    padding: 4rem 1rem 3rem 1rem;
-    text-align: center;
-  }
+  /* Header */
   h1 {
     font-weight: 900;
-    font-size: 3.5rem;
-    line-height: 1.1;
+    font-size: 3rem;
     color: #00ff99;
+    text-align: center;
+    margin-bottom: 3rem;
     letter-spacing: -0.03em;
-    margin-bottom: 2rem;
   }
 
-  /* Dimensions Grid */
-  .dimensions-grid {
+  /* Cards Grid */
+  .cards-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: left;
+    gap: 2.5rem;
   }
   @media (min-width: 700px) {
-    .dimensions-grid {
-      grid-template-columns: 1fr 1fr;
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
     }
   }
-  .dimension-card {
-    background: #151515;
-    border-radius: 1rem;
-    box-shadow: 0 4px 24px rgba(0,255,153,0.07);
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    border-left: 4px solid #00ff99;
-    transition: transform 0.2s, box-shadow 0.2s;
+
+  /* Individual Card */
+  .card {
+    background: linear-gradient(145deg, #121212, #1a1a1a);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    box-shadow:
+      0 4px 8px rgba(0, 255, 153, 0.1),
+      inset 0 0 10px rgba(0, 255, 153, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
   }
-  .dimension-card:hover,
-  .dimension-card:focus-within {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 32px rgba(0,255,153,0.13);
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-6px);
+    box-shadow:
+      0 12px 24px rgba(0, 255, 153, 0.3),
+      inset 0 0 15px rgba(0, 255, 153, 0.25);
     outline: none;
   }
-  .dimension-title {
-    color: #00ff99;
-    font-size: 1.3rem;
+
+  /* Card Title */
+  .card-title {
+    font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 0.7rem;
-    letter-spacing: 0.01em;
+    color: #00ff99;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
   }
-  .dimension-desc {
+
+  /* Card Description */
+  .card-desc {
+    font-size: 1.1rem;
     color: #a0f0c0;
-    font-size: 1.06rem;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   /* Footer */
   footer {
-    margin-top: auto;
-    padding: 1.5rem 1rem;
-    border-top: 1px solid #222;
     text-align: center;
-    font-size: 0.875rem;
+    padding: 2rem 1rem;
+    border-top: 1px solid #222;
     color: #555;
-  }
-
-  /* Responsive typography */
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2.25rem;
-    }
-    nav a.logo {
-      font-size: 1.3rem;
-    }
-    .nav-links a,
-    .nav-links span.disabled {
-      font-size: 1rem;
-      padding: 0.75rem 1rem;
-    }
+    font-size: 0.9rem;
+    margin-top: auto;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <a href="index.html" class="logo" tabindex="0">Welgiene</a>
+  <div class="container">
+    <h1>Dimensions of Wellness</h1>
 
-    <!-- Hidden checkbox for menu toggle -->
-    <input type="checkbox" id="menu-toggle" aria-label="Toggle menu" />
-    <label for="menu-toggle" aria-hidden="true">
-      <span></span>
-    </label>
+    <div class="cards-grid">
 
-    <div class="nav-links">
-      <a href="index.html" tabindex="0">Home</a>
-      <a href="dimensions.html" tabindex="0">Dimensions</a>
-      <span class="disabled" title="Coming Soon" tabindex="-1">Docs</span>
-      <span class="disabled" title="Coming Soon" tabindex="-1">Community</span>
-      <span class="disabled" title="Coming Soon" tabindex="-1">Pricing</span>
-    </div>
-  </nav>
-</header>
-
-<main>
-  <h1>Dimensions of Wellness</h1>
-  <div class="dimensions-grid">
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Spiritual</div>
-      <div class="dimension-desc">
-        Finding purpose, value, and meaning in life, often involving beliefs, ethics, and morals that guide actions and give a sense of harmony and inner peace.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Physical</div>
-      <div class="dimension-desc">
-        Caring for your body through regular exercise, balanced nutrition, adequate sleep, and healthy habits to achieve optimal physical health and functioning.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Emotional</div>
-      <div class="dimension-desc">
-        Understanding, expressing, and managing your feelings in a constructive way, developing resilience, and coping effectively with stress and challenges.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Intellectual</div>
-      <div class="dimension-desc">
-        Engaging in creative and stimulating mental activities, expanding knowledge, improving skills, and seeking lifelong learning and curiosity.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Occupational</div>
-      <div class="dimension-desc">
-        Finding personal satisfaction and enrichment in your work or career while balancing work and leisure, and aligning your occupation with your values and goals.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Social</div>
-      <div class="dimension-desc">
-        Building healthy, nurturing, and supportive relationships, connecting with others, and contributing to your community and social networks.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Financial</div>
-      <div class="dimension-desc">
-        Effectively managing your financial resources, budgeting, saving, and planning for the future to reduce stress and achieve financial stability.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Environmental</div>
-      <div class="dimension-desc">
-        Recognizing your responsibility to protect the environment, making choices that are respectful of resources, and creating safe, sustainable surroundings.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Cultural</div>
-      <div class="dimension-desc">
-        Understanding, respecting, and appreciating your own cultural background and that of others, fostering inclusivity, and celebrating diversity.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Digital</div>
-      <div class="dimension-desc">
-        Using technology mindfully and responsibly, maintaining a healthy balance between online and offline life, and protecting your digital identity and well-being.
-      </div>
-    </div>
-
-    <div class="dimension-card" tabindex="0">
-      <div class="dimension-title">Creative</div>
-      <div class="dimension-desc">
-        Expressing yourself through artistic or imaginative activities, embracing innovation, and nurturing your ability to generate new ideas and solutions.
-      </div>
-    </div>
-
-  </div>
-</main>
-
-<footer>
-  &copy; 2025 Welgiene. All rights reserved.
-</footer>
-
-</body>
-</html>
+      <article class="card" tabindex="0" aria-label="Spiritual wellness">
+        <h2 class="card-title">Spiritual</h2>
+        <p class="card-desc">
