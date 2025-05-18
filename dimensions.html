@@ -1,105 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dimensions of Wellness</title>
-  <style>
-    body {
-      background: #0a0a0a;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      min-height: 100vh;
-    }
-    nav {
-      background: #111;
-      padding: 1.2rem 0;
-      text-align: center;
-      border-bottom: 1px solid #222;
-    }
-    nav a {
-      color: #00ff99;
-      text-decoration: none;
-      margin: 0 1.5rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: #00cc77;
-    }
-    nav a.disabled {
-      opacity: 0.5;
-      color: #888 !important;
-      pointer-events: none;
-      cursor: not-allowed;
-      text-decoration: line-through;
-      position: relative;
-    }
-    nav a.disabled::after {
-      content: " (Coming Soon)";
-      font-size: 0.9em;
-      color: #555;
-      margin-left: 0.2em;
-    }
-    .container {
-      max-width: 900px;
-      margin: 3rem auto 0 auto;
-      padding: 0 1rem 3rem 1rem;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welgiene Style Landing Page - Dark Mode</title>
+<style>
+  /* Reset & base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #00ff99;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #00cc77;
+  }
+
+  /* Container */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  /* Header */
+  header {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #222;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+    color: #00ff99;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .nav-links a {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Hero */
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: #00ff99;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  p.lead {
+    font-size: 1.25rem;
+    color: #a0f0c0;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+  }
+  .btn-primary {
+    background-color: #00ff99;
+    color: #0a0a0a;
+    font-weight: 700;
+    padding: 0.75rem 2.5rem;
+    border-radius: 9999px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #00cc77;
+  }
+
+  /* Footer */
+  footer {
+    padding: 1.5rem 0;
+    border-top: 1px solid #222;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #555;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
     h1 {
-      color: #00ff99;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      font-weight: 900;
+      font-size: 2.25rem;
     }
-    .dimensions-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    .nav-links {
+      display: none; /* simple mobile fallback */
     }
-    @media (min-width: 700px) {
-      .dimensions-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    .dimension-card {
-      background: #151515;
-      border-radius: 1rem;
-      box-shadow: 0 4px 24px rgba(0,255,153,0.07);
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      border-left: 4px solid #00ff99;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .dimension-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 32px rgba(0,255,153,0.13);
-    }
-    .dimension-title {
-      color: #00ff99;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      letter-spacing: 0.01em;
-    }
-    .dimension-desc {
-      color: #a0f0c0;
-      font-size: 1.06rem;
-      line-height: 1.6;
-    }
-    footer {
-      margin-top: 4rem;
-      padding: 2rem 0 1rem 0;
-      text-align: center;
-      color: #555;
-      border-top: 1px solid #222;
-      font-size: 0.95rem;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
+  
 <header>
 <nav style="background:#111; padding:1rem 2rem; display:flex; align-items:center; border-bottom:1px solid #222;">
   <a href="index.html" style="font-weight:900; font-size:1.5rem; color:#00ff99; text-decoration:none; margin-right:1.5rem;">
