@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dimensions of Wellness</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    nav {
+      background: #111;
+      padding: 1.2rem 0;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    nav a {
+      color: #00ff99;
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #00cc77;
+    }
+    nav a.disabled {
+      opacity: 0.5;
+      color: #888 !important;
+      pointer-events: none;
+      cursor: not-allowed;
+      text-decoration: line-through;
+      position: relative;
+    }
+    nav a.disabled::after {
+      content: " (Coming Soon)";
+      font-size: 0.9em;
+      color: #555;
+      margin-left: 0.2em;
+    }
+    .container {
+      max-width: 900px;
+      margin: 3rem auto 0 auto;
+      padding: 0 1rem 3rem 1rem;
+    }
+    h1 {
+      color: #00ff99;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-weight: 900;
+    }
+    .dimensions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 700px) {
+      .dimensions-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .dimension-card {
+      background: #151515;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px rgba(0,255,153,0.07);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      border-left: 4px solid #00ff99;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .dimension-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,255,153,0.13);
+    }
+    .dimension-title {
+      color: #00ff99;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.01em;
+    }
+    .dimension-desc {
+      color: #a0f0c0;
+      font-size: 1.06rem;
+      line-height: 1.6;
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+      color: #555;
+      border-top: 1px solid #222;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dimensions.html">Dimensions</a>
+    <a class="disabled" tabindex="-1" aria-disabled="true">Docs</a>
+    <a class="disabled" tabindex="-1" aria-disabled="true">Community</a>
+    <a class="disabled" tabindex="-1" aria-disabled="true">Pricing</a>
+  </nav>
+  <div class="container">
+    <h1>Dimensions of Wellness</h1>
+    <div class="dimensions-grid">
+
+      <div class="dimension-card">
+        <div class="dimension-title">Spiritual</div>
+        <div class="dimension-desc">
+          Finding purpose, value, and meaning in life, often involving beliefs, ethics, and morals that guide actions and give a sense of harmony and inner peace.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Physical</div>
+        <div class="dimension-desc">
+          Caring for your body through regular exercise, balanced nutrition, adequate sleep, and healthy habits to achieve optimal physical health and functioning.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Emotional</div>
+        <div class="dimension-desc">
+          Understanding, expressing, and managing your feelings in a constructive way, developing resilience, and coping effectively with stress and challenges.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Intellectual</div>
+        <div class="dimension-desc">
+          Engaging in creative and stimulating mental activities, expanding knowledge, improving skills, and seeking lifelong learning and curiosity.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Occupational</div>
+        <div class="dimension-desc">
+          Finding personal satisfaction and enrichment in your work or career while balancing work and leisure, and aligning your occupation with your values and goals.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Social</div>
+        <div class="dimension-desc">
+          Building healthy, nurturing, and supportive relationships, connecting with others, and contributing to your community and social networks.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Financial</div>
+        <div class="dimension-desc">
+          Effectively managing your financial resources, budgeting, saving, and planning for the future to reduce stress and achieve financial stability.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Environmental</div>
+        <div class="dimension-desc">
+          Recognizing your responsibility to protect the environment, making choices that are respectful of resources, and creating safe, sustainable surroundings.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Cultural</div>
+        <div class="dimension-desc">
+          Understanding, respecting, and appreciating your own cultural background and that of others, fostering inclusivity, and celebrating diversity.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Digital</div>
+        <div class="dimension-desc">
+          Using technology mindfully and responsibly, maintaining a healthy balance between online and offline life, and protecting your digital identity and well-being.
+        </div>
+      </div>
+
+      <div class="dimension-card">
+        <div class="dimension-title">Creative</div>
+        <div class="dimension-desc">
+          Expressing yourself through artistic or imaginative activities, embracing innovation, and nurturing your ability to generate new ideas and solutions.
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Your Project. All rights reserved.
+  </footer>
+</body>
+</html>
