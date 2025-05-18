@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welgiene Wellness Platform</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #00ff99;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    color: #00cc77;
+    outline: none;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+  header {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #222;
+    text-align: center;
+  }
+  header h1 {
+    font-weight: 900;
+    font-size: 2.75rem;
+    color: #00ff99;
+    margin-bottom: 0.5rem;
+  }
+  header p {
+    font-size: 1.25rem;
+    color: #a0f0c0;
+    max-width: 650px;
+    margin: 0 auto 1.5rem;
+  }
+  .btn-primary {
+    background-color: #00ff99;
+    color: #0a0a0a;
+    font-weight: 700;
+    padding: 0.75rem 3rem;
+    border-radius: 9999px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background-color: #00cc77;
+    outline: none;
+  }
+  /* Hero video */
+  .hero-video {
+    margin: 2rem auto 3rem;
+    max-width: 900px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,255,153,0.3);
+  }
+  .hero-video iframe, .hero-video video {
+    width: 100%;
+    height: 500px;
+    display: block;
+  }
+  @media (max-width: 700px) {
+    .hero-video iframe, .hero-video video {
+      height: 280px;
+    }
+  }
+  /* Benefits section */
+  .benefits {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+  .benefits h2 {
+    color: #00ff99;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .benefits-list {
+    list-style: none;
+    color: #a0f0c0;
+    font-size: 1.1rem;
+    max-height: 180px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    margin-bottom: 1rem;
+  }
+  .benefits-list.expanded {
+    max-height: 1000px; /* large enough to show all */
+  }
+  .benefits-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .benefits-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #00ff99;
+    font-weight: bold;
+  }
+  .see-more-btn {
+    background: none;
+    border: none;
+    color: #00ff99;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+    margin: 0 auto;
+    text-decoration: underline;
+  }
+  .see-more-btn:hover, .see-more-btn:focus {
+    color: #00cc77;
+    outline: none;
+  }
+  /* Testimonials */
+  .testimonials {
+    max-width: 960px;
+    margin: 0 auto 3rem;
+  }
+  .testimonials h2 {
+    color: #00ff99;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .testimonial-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 700px) {
+    .testimonial-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  .testimonial-card {
+    background: #151515;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0,255,153,0.1);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .testimonial-img {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #00ff99;
+  }
+  .testimonial-content {
+    flex: 1;
+  }
+  .testimonial-text {
+    font-style: italic;
+    color: #a0f0c0;
+    margin-bottom: 0.5rem;
+  }
+  .testimonial-product-img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,255,153,0.2);
+  }
+  /* High quality image with overlay text */
+  .highlight-section {
+    position: relative;
+    margin: 3rem auto;
+    max-width: 900px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,255,153,0.3);
+  }
+  .highlight-section img {
+    width: 100%;
+    display: block;
+  }
+  .highlight-text {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    color: #00ff99;
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 0 0 8px #00ff99aa;
+    max-width: 80%;
+  }
+  /* Photo of person using product */
+  .user-photo-section {
+    max-width: 900px;
+    margin: 3rem auto 4rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,255,153,0.25);
+  }
+  .user-photo-section img {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+  }
+</style>
+</head>
+<body>
+
+<header class="container">
+  <h1>Build Better Wellness</h1>
+  <p>
+    Welgiene is a full service web platform that lets you focus on your optimal wellness and work back through good patterns and proper standards to deliver a quality, fast, and resilient wellness experience.
+  </p>
+  <a href="https://www.instagram.com/welgiene/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top:1rem; display:inline-block;">Get Well</a>
+</header>
+
+<section class="hero-video container">
+  <!-- Example YouTube embed, replace src with your actual video -->
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Welgiene Product Overview" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<section class="benefits container" aria-label="Benefits of Welgiene">
+  <h2>Benefits</h2>
+  <ul id="benefits-list" class="benefits-list">
+    <li>Personalized wellness plans tailored to your needs</li>
+    <li>Track your progress with intuitive dashboards</li>
+    <li>Access expert advice and community support</li>
+    <li>Integrates seamlessly with wearable devices</li>
+    <li>Real-time feedback and adaptive coaching</li>
+    <li>Secure and private data management</li>
+    <li>Flexible scheduling and reminders</li>
+    <li>Comprehensive nutrition and fitness guidance</li>
+    <li>Mindfulness and stress reduction tools</li>
+    <li>24/7 customer support</li>
+  </ul>
+  <button id="toggle-benefits" class="see-more-btn" aria-expanded="false" aria-controls="benefits-list">See More</button>
+</section>
+
+<section class="testimonials container" aria-label="Customer testimonials">
+  <h2>What Our Users Say</h2>
+  <div class="testimonial-cards">
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Photo of Sarah" class="testimonial-img" />
+      <div class="testimonial-content">
+        <p class="testimonial-text">"Welgiene transformed my wellness journey. The personalized plans and real-time feedback keep me motivated every day!"</p>
+        <img src="https://via.placeholder.com/150x100?text=Product+Screenshot" alt="Welgiene app screenshot" class="testimonial-product-img" />
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="Photo of Mark" class="testimonial-img" />
+      <div class="testimonial-content">
+        <p class="testimonial-text">"The seamless integration with my wearable device and expert advice make Welgiene my go-to wellness platform."</p>
+        <img src="https://via.placeholder.com/150x100?text=Product+Screenshot" alt="Welgiene app screenshot" class="testimonial-product-img" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="highlight-section" aria-label="Highlight feature">
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Healthy lifestyle" />
+  <div class="highlight-text">Empower Your Wellness Journey</div>
+</section>
+
+<section class="user-photo-section" aria-label="Person using Welgiene product">
+  <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=900&q=80" alt="Person using Welgiene wellness app on smartphone" />
+</section>
+
+<script>
+  // Toggle benefits list expansion
+  const toggleBtn = document.getElementById('toggle-benefits');
+  const benefitsList = document.getElementById('benefits-list');
+
+  toggleBtn.addEventListener('click', () => {
+    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', String(!expanded));
+    benefitsList.classList.toggle('expanded');
+    toggleBtn.textContent = expanded ? 'See More' : 'See Less';
+  });
+</script>
+
+</body>
+</html>
