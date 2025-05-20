@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skateboarder Game | Welgiene</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      background: #181818;
+      color: #fff;
+      font-family: 'Press Start 2P', monospace, Arial, sans-serif;
+      margin: 0; padding: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #00ff99;
+      text-shadow: 1px 1px 0 #000;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    #game-container {
+      margin: 2rem 0 1rem 0;
+      background: #222;
+      border: 4px solid #00ff99;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px #000b, 0 0 0 4px #0a0a0a;
+      width: 340px;
+      max-width: 100vw;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    canvas {
+      display: block;
+      background: linear-gradient(to top, #444 80%, #aef 100%);
+      image-rendering: pixelated;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+    .controls {
+      margin: 1rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #a0f0c0;
+    }
+    .score {
+      font-size: 1.1rem;
+      color: #fd5949;
+      margin: 0.5rem 0;
+      font-family: inherit;
+    }
+    .pwa-tip {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 1rem;
+      text-align: center;
+      max-width: 320px;
+    }
+    @media (max-width: 400px) {
+      #game-container { width: 98vw; }
+      canvas { width: 98vw !important; }
+    }
+  </style>
+  <!-- 8-bit font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Skateboarder Run</h1>
+  <div id="game-container">
+    <canvas id="game" width="320" height="160"></canvas>
+    <div class="score" id="score">Score: 0</div>
+    <div class="controls">
+      Tap/Space/↑ to Jump<br>
+      <span style="font-size:0.85em;">(Great for 404 pages or brain breaks!)</span>
+    </div>
+  </div>
+  <div class="pwa-tip">
+    Tip: Add this game to your home screen for offline play!
+  </div>
+  <script>
+    // --- 8-bit Skateboarder Game ---
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+
+    // Game variables
+    let playing = true, jumping = false, velocity = 0, gravity = 0.8, jumpPower = -8;
+    let ground = h - 30, skaterX = 40, skaterY = ground, skaterW = 24, skaterH = 24;
+    let obstacles = [], obsW = 18, obsH = 18, obsSpeed = 3, spawnTimer = 0, score = 0, highScore = 0;
+    let frame = 0, gameOver = false;
+
+    // 8-bit skateboarder sprite (simple pixel art)
+    function drawSkater(x, y) {
+      // Board
+      ctx.fillStyle = '#fd5949';
+      ctx.fillRect(x+2, y+skaterH-4, skaterW-4, 4);
+      // Body
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(x+8, y+5, 8, 8);
+      // Head
+      ctx.fillStyle = '#00ff99';
+      ctx.fillRect(x+9, y, 6, 6);
+      // Arms
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(x+5, y+7, 14, 3);
+      // Legs
+      ctx.fillStyle = '#d6249f';
+      ctx.fillRect(x+10, y+13, 3, 8);
+      ctx.fillRect(x+13, y+13, 3, 8);
+    }
+
+    // Draw obstacle (8-bit traffic cone)
+    function drawObstacle(x, y) {
+      ctx.fillStyle = '#fd5949';
+      ctx.fillRect(x+4, y+obsH-10, 10, 10); // base
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(x+7, y+obsH-14, 4, 4); // stripe
+      ctx.fillStyle = '#a0a0a0';
+      ctx.fillRect(x+8, y+obsH-18, 2, 4); // tip
+    }
+
+    // Reset game
+    function resetGame() {
+      obstacles = [];
+      skaterY = ground;
+      velocity = 0;
+      score = 0;
+      frame = 0;
+      obsSpeed = 3;
+      gameOver = false;
+      playing = true;
+      document.getElementById('score').textContent = 'Score: 0';
+    }
+
+    // Game loop
+    function loop() {
+      ctx.clearRect(0, 0, w, h);
+      // Draw ground
+      ctx.fillStyle = '#333';
+      ctx.fillRect(0, ground+skaterH-4, w, 8);
+
+      // Draw skater
+      drawSkater(skaterX, skaterY);
+
+      // Skater jump physics
+      if (playing) {
+        velocity += gravity;
+        skaterY += velocity;
+        if (skaterY > ground) {
+          skaterY = ground;
+          velocity = 0;
+          jumping = false;
+        }
+      }
+
+      // Obstacles
+      if (playing) {
+        if (spawnTimer <= 0) {
+          let obsY = ground + skaterH - obsH;
+          obstacles.push({x: w, y: obsY});
+          spawnTimer = Math.max(60, 120 - Math.floor(score/10)*5); // spawn faster as score increases
+        } else {
+          spawnTimer--;
+        }
+        for (let i = 0; i < obstacles.length; i++) {
+          obstacles[i].x -= obsSpeed;
+        }
+        // Remove off-screen
+        obstacles = obstacles.filter(o => o.x > -obsW);
+
+        // Draw
+        for (let o of obstacles) drawObstacle(o.x, o.y);
+
+        // Collision detection
+        for (let o of obstacles) {
+          if (
+            skaterX + skaterW - 6 > o.x &&
+            skaterX + 6 < o.x + obsW &&
+            skaterY + skaterH > o.y + 2 &&
+            skaterY + 6 < o.y + obsH
+          ) {
+            playing = false;
+            gameOver = true;
+            if (score > highScore) highScore = score;
+            setTimeout(() => {
+              document.getElementById('score').textContent = `Game Over! Score: ${score} | High: ${highScore} — Tap/Space to Restart`;
+            }, 100);
+          }
+        }
+        // Score
+        if (!gameOver && frame % 5 === 0) {
+          score++;
+          document.getElementById('score').textContent = 'Score: ' + score;
+          if (score % 50 === 0 && obsSpeed < 7) obsSpeed += 0.4; // speed up
+        }
+      }
+      frame++;
+      if (!gameOver) requestAnimationFrame(loop);
+    }
+    // Controls
+    function jump() {
+      if (!playing && gameOver) {
+        resetGame();
+        loop();
+        return;
+      }
+      if (!jumping && playing) {
+        velocity = jumpPower;
+        jumping = true;
+      }
+    }
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        e.preventDefault();
+        jump();
+      }
+    });
+    canvas.addEventListener('touchstart', jump);
+    canvas.addEventListener('mousedown', jump);
+
+    // Start game
+    resetGame();
+    loop();
+
+    // --- PWA Service Worker Registration ---
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
+  <!-- Manifest for PWA -->
+  <script type="application/json" id="manifest">
+  {
+    "name": "Skateboarder Game",
+    "short_name": "Skateboarder",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#181818",
+    "theme_color": "#00ff99",
+    "icons": [
+      {
+        "src": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f6f9.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
