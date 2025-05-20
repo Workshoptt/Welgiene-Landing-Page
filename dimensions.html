@@ -1,192 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dimensions of Wellness - Sophisticated Cards</title>
-<style>
-  /* Reset & base */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Container */
-  .container {
-    max-width: 960px;
-    margin: 3rem auto 4rem auto;
-    padding: 0 1rem;
-    width: 100%;
-  }
-
-  /* Header */
-  h1 {
-    font-weight: 900;
-    font-size: 3rem;
-    color: #00ff99;
-    text-align: center;
-    margin-bottom: 3rem;
-    letter-spacing: -0.03em;
-  }
-
-  /* Cards Grid */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  @media (min-width: 700px) {
-    .cards-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dimensions of Wellness</title>
+  <style>
+    /* Reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-  }
-
-  /* Individual Card */
-  .card {
-    background: linear-gradient(145deg, #121212, #1a1a1a);
-    border-radius: 16px;
-    padding: 2rem 2.5rem;
-    box-shadow:
-      0 4px 8px rgba(0, 255, 153, 0.1),
-      inset 0 0 10px rgba(0, 255, 153, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: default;
-  }
-  .card:hover,
-  .card:focus-within {
-    transform: translateY(-6px);
-    box-shadow:
-      0 12px 24px rgba(0, 255, 153, 0.3),
-      inset 0 0 15px rgba(0, 255, 153, 0.25);
-    outline: none;
-  }
-
-  /* Card Title */
-  .card-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #00ff99;
-    margin-bottom: 1rem;
-    letter-spacing: 0.02em;
-  }
-
-  /* Card Description */
-  .card-desc {
-    font-size: 1.1rem;
-    color: #a0f0c0;
-    line-height: 1.5;
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    border-top: 1px solid #222;
-    color: #555;
-    font-size: 0.9rem;
-    margin-top: auto;
-  }
-</style>
+    /* Sticky Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #222;
+      z-index: 1000;
+    }
+    .logo {
+      color: #00ff99;
+      font-weight: 900;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #00ff99;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #00cc77;
+      outline: none;
+    }
+    /* Hamburger menu checkbox (hidden) */
+    #nav-toggle { display: none; }
+    .nav-toggle-label {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 28px;
+      height: 22px;
+      justify-content: space-between;
+    }
+    .nav-toggle-label span {
+      display: block;
+      height: 3px;
+      background: #00ff99;
+      border-radius: 2px;
+    }
+    /* Responsive styles for nav */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: #111;
+        flex-direction: column;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding: 2rem 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: -2px 0 8px rgba(0,255,153,0.3);
+        z-index: 999;
+      }
+      #nav-toggle:checked + .nav-toggle-label + .nav-links {
+        transform: translateX(0);
+      }
+      .nav-toggle-label {
+        display: flex;
+      }
+    }
+    /* Container */
+    .container {
+      max-width: 960px;
+      margin: 3rem auto 4rem auto;
+      padding: 0 1rem;
+      width: 100%;
+    }
+    h1 {
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: #00ff99;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.03em;
+    }
+    /* Expandable Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 700px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+      }
+    }
+    details {
+      background: linear-gradient(145deg, #121212, #1a1a1a);
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 255, 153, 0.07), 
+                  inset 0 0 10px rgba(0, 255, 153, 0.10);
+      padding: 1.5rem 2rem;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+      border: 1px solid #222;
+      color: #e0e0e0;
+      font-size: 1.05rem;
+    }
+    details[open] {
+      background: linear-gradient(145deg, #181818, #232323);
+      box-shadow: 0 8px 24px rgba(0,255,153,0.15),
+                  inset 0 0 15px rgba(0,255,153,0.13);
+    }
+    summary {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #00ff99;
+      cursor: pointer;
+      outline: none;
+      letter-spacing: 0.02em;
+      list-style: none;
+      transition: color 0.2s;
+    }
+    summary::-webkit-details-marker {
+      color: #00ff99;
+      font-size: 1.2rem;
+    }
+    details > *:not(summary) {
+      margin-top: 1rem;
+      color: #a0f0c0;
+      font-size: 1.08rem;
+      line-height: 1.5;
+    }
+    /* Instagram Gradient Button */
+    .insta-btn-container {
+      display: flex;
+      justify-content: center;
+      margin: 3rem 0 2rem 0;
+    }
+    .insta-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #fd5949 0%, #d6249f 50%, #285AEB 100%);
+      box-shadow: 0 4px 16px rgba(253,89,73,0.15), 0 2px 8px rgba(40,90,235,0.10);
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.1s, background 0.2s;
+      outline: none;
+      letter-spacing: 0.02em;
+    }
+    .insta-btn:hover, .insta-btn:focus {
+      background: linear-gradient(90deg, #fd5949 0%, #ff9966 25%, #fa7e1e 50%, #d6249f 75%, #285AEB 100%);
+      box-shadow: 0 8px 24px rgba(253,89,73,0.25), 0 4px 16px rgba(40,90,235,0.18);
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .insta-btn:active {
+      background: linear-gradient(90deg, #d6249f 0%, #fd5949 50%, #285AEB 100%);
+      box-shadow: 0 2px 4px rgba(253,89,73,0.10), 0 1px 4px rgba(40,90,235,0.08);
+      color: #eee;
+      transform: translateY(2px) scale(0.97);
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid #222;
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Dimensions of Wellness</h1>
-
-    <div class="cards-grid">
-
-      <article class="card" tabindex="0" aria-label="Spiritual wellness">
-        <h2 class="card-title">Spiritual</h2>
-        <p class="card-desc">
-          Discovering purpose, meaning, and harmony in life through beliefs, values, and ethics that guide your actions and foster inner peace.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Physical wellness">
-        <h2 class="card-title">Physical</h2>
-        <p class="card-desc">
-          Nurturing your body with regular exercise, balanced nutrition, restful sleep, and healthy habits to maintain vitality and wellness.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Emotional wellness">
-        <h2 class="card-title">Emotional</h2>
-        <p class="card-desc">
-          Cultivating awareness and management of your feelings, building resilience, and coping constructively with life’s challenges.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Intellectual wellness">
-        <h2 class="card-title">Intellectual</h2>
-        <p class="card-desc">
-          Engaging your mind through creativity, learning, curiosity, and critical thinking to grow and expand your knowledge.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Occupational wellness">
-        <h2 class="card-title">Occupational</h2>
-        <p class="card-desc">
-          Finding satisfaction and balance in your work or career while aligning your efforts with your personal values and goals.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Social wellness">
-        <h2 class="card-title">Social</h2>
-        <p class="card-desc">
-          Building and maintaining supportive, healthy relationships and contributing positively to your community.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Financial wellness">
-        <h2 class="card-title">Financial</h2>
-        <p class="card-desc">
-          Managing your financial resources wisely through budgeting, saving, and planning to reduce stress and secure your future.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Environmental wellness">
-        <h2 class="card-title">Environmental</h2>
-        <p class="card-desc">
-          Respecting and protecting your surroundings by making sustainable choices and fostering safe, healthy environments.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Cultural wellness">
-        <h2 class="card-title">Cultural</h2>
-        <p class="card-desc">
-          Embracing and appreciating your own culture and that of others, promoting inclusivity and diversity.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Digital wellness">
-        <h2 class="card-title">Digital</h2>
-        <p class="card-desc">
-          Using technology mindfully to maintain balance, protect your privacy, and foster healthy online habits.
-        </p>
-      </article>
-
-      <article class="card" tabindex="0" aria-label="Creative wellness">
-        <h2 class="card-title">Creative</h2>
-        <p class="card-desc">
-          Expressing yourself through art, innovation, and imagination to inspire growth and new ideas.
-        </p>
-      </article>
-
-    </div>
+<!-- Sticky Navbar -->
+<nav>
+  <a href="index.html" class="logo">Welgiene</a>
+  <input type="checkbox" id="nav-toggle" />
+  <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="dimensions.html">Dimensions</a>
+    <a href="join.html">Free Application</a>
+    <a href="#" style="color:#888; cursor:not-allowed; text-decoration:line-through;" aria-disabled="true" tabindex="-1" title="Coming Soon">Docs</a>
+    <a href="#" style="color:#888; cursor:not-allowed; text-decoration:line-through;" aria-disabled="true" tabindex="-1" title="Coming Soon">Community</a>
+    <a href="#" style="color:#888; cursor:not-allowed; text-decoration:line-through;" aria-disabled="true" tabindex="-1" title="Coming Soon">Pricing</a>
   </div>
-  
-  <footer>
-    &copy; 2025 Welgiene. All rights reserved.
-  </footer>
+</nav>
+
+<!-- Main Content -->
+<div class="container">
+  <h1>Dimensions of Wellness</h1>
+  <div class="cards-grid">
+
+    <details>
+      <summary>Spiritual</summary>
+      <p>Discovering purpose, meaning, and harmony in life through beliefs, values, and ethics that guide your actions and foster inner peace.</p>
+    </details>
+
+    <details>
+      <summary>Physical</summary>
+      <p>Nurturing your body with regular exercise, balanced nutrition, restful sleep, and healthy habits to maintain vitality and wellness.</p>
+    </details>
+
+    <details>
+      <summary>Emotional</summary>
+      <p>Cultivating awareness and management of your feelings, building resilience, and coping constructively with life’s challenges.</p>
+    </details>
+
+    <details>
+      <summary>Intellectual</summary>
+      <p>Engaging your mind through creativity, learning, curiosity, and critical thinking to grow and expand your knowledge.</p>
+    </details>
+
+    <details>
+      <summary>Occupational</summary>
+      <p>Finding satisfaction and balance in your work or career while aligning your efforts with your personal values and goals.</p>
+    </details>
+
+    <details>
+      <summary>Social</summary>
+      <p>Building and maintaining supportive, healthy relationships and contributing positively to your community.</p>
+    </details>
+
+    <details>
+      <summary>Financial</summary>
+      <p>Managing your financial resources wisely through budgeting, saving, and planning to reduce stress and secure your future.</p>
+    </details>
+
+    <details>
+      <summary>Environmental</summary>
+      <p>Respecting and protecting your surroundings by making sustainable choices and fostering safe, healthy environments.</p>
+    </details>
+
+    <details>
+      <summary>Cultural</summary>
+      <p>Embracing and appreciating your own culture and that of others, promoting inclusivity and diversity, and how that makes us all better humans.</p>
+    </details>
+
+    <details>
+      <summary>Digital</summary>
+      <p>Using technology mindfully to maintain balance, protect your privacy, and foster healthy online habits.</p>
+    </details>
+
+  </div>
+
+  <div class="insta-btn-container">
+    <a
+      class="insta-btn"
+      href="https://instagram.com/welgiene"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Learn More</a>
+  </div>
+</div>
+
+<footer>
+  © 2025 Welgiene. All rights reserved.
+</footer>
 
 </body>
 </html>
