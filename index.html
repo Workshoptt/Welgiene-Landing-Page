@@ -4,102 +4,237 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Welgiene – Wellness Matters</title>
-  <link rel="icon" href="logo.jpg" type="image/jpeg">
-  <meta name="theme-color" content="#00ff99">
-  <link rel="manifest" href="manifest.json">
+  <!-- Favicon using your logo -->
+  <link rel="icon" href="https://pplx-res.cloudinary.com/image/private/user_uploads/70406780/a4d265d8-9a32-4a9e-ac4c-e87d83d31458/logo.jpg" type="image/jpeg">
+  <meta name="theme-color" content="#0a0a0a">
   <style>
-    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; color: #222; }
+    :root {
+      --bg: #0a0a0a;
+      --header: #111;
+      --card: #161616;
+      --accent: #00ff99;
+      --accent2: #d6249f;
+      --text: #e0e0e0;
+      --muted: #888;
+      --shadow: 0 4px 24px #00ff9922;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+    }
     header {
-      background: #111;
-      color: #00ff99;
+      width: 100%;
+      background: var(--header);
+      box-shadow: 0 1px 8px #0006;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
+      justify-content: flex-start;
+      padding: 0.7rem 2rem;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
     }
-    .logo-wrap { display: flex; align-items: center; }
-    .logo-img { width: 44px; height: 44px; margin-right: 1rem; border-radius: 8px; background: #fff; object-fit: contain; }
-    .brand-title { font-size: 2rem; font-weight: 900; letter-spacing: 0.04em; }
-    nav a { color: #00ff99; text-decoration: none; margin: 0 1rem; font-weight: 600; font-size: 1.1rem; }
-    nav a:hover { color: #00cc77; }
-    .auth-btn { background: linear-gradient(90deg,#fd5949,#d6249f,#285AEB); color: #fff; border: none; border-radius: 999px; padding: 0.5rem 1.5rem; font-weight: 700; font-size: 1.1rem; cursor: pointer; box-shadow: 0 2px 8px #0002; margin-left: 1rem; }
-    .auth-btn:active { background: linear-gradient(90deg,#d6249f,#fd5949,#285AEB); }
-    .container { max-width: 900px; margin: 2.5rem auto; padding: 0 1rem; }
-    h1, h2 { text-align: center; color: #00ff99; font-weight: 900; }
-    .section { margin-bottom: 3rem; }
-    .cards-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-    @media (min-width: 700px) { .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; } }
-    details { background: #fff; border-radius: 16px; box-shadow: 0 2px 8px #00ff9922; padding: 1.5rem 2rem; border: 1px solid #eee; color: #222; font-size: 1.05rem; }
-    details[open] { background: #e0ffe0; }
-    summary { font-weight: 700; font-size: 1.3rem; color: #00cc77; cursor: pointer; outline: none; }
-    summary::-webkit-details-marker { color: #00ff99; }
-    details > *:not(summary) { margin-top: 1rem; color: #333; }
-    .contact-form { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 8px #00ff9922; max-width: 450px; margin: 2rem auto 0 auto; }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 0.75rem 1rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
-    .contact-form button { background: #00ff99; color: #111; font-weight: bold; border: none; border-radius: 999px; padding: 0.75rem 2rem; font-size: 1.1rem; cursor: pointer; }
+    .logo-img {
+      width: 44px; height: 44px;
+      margin-right: 1rem;
+      border-radius: 8px;
+      background: #fff;
+      object-fit: contain;
+      box-shadow: 0 2px 8px #0004;
+    }
+    .brand-title {
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      font-family: inherit;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+    /* Hero styles */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      margin-bottom: 3rem;
+    }
+    .hero-logo-bg {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #222 70%, #444 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px #00ff9944;
+      position: relative;
+    }
+    .hero-logo-bg img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 8px #0008);
+    }
+    .hero-title {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      color: var(--accent);
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 8px #000a, 0 0 8px #00ff9955;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-text {
+      font-size: 1.25rem;
+      color: #a0f0c0;
+      text-align: center;
+      margin: 2.5rem auto 0 auto;
+      max-width: 700px;
+    }
+    /* HR line styles */
+    hr {
+      border: none;
+      height: 4px;
+      width: 60%;
+      margin: 3.5rem auto 3.5rem auto;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #fd5949 0%, #d6249f 50%, #285AEB 100%);
+      box-shadow: 0 2px 8px #285AEB22;
+    }
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    @media (min-width: 700px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    }
+    details {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 2rem;
+      border: 1px solid #222;
+      color: var(--text);
+      font-size: 1.05rem;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    details[open] {
+      background: #181f1c;
+      box-shadow: 0 8px 32px #00ff9944;
+    }
+    summary {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--accent);
+      cursor: pointer;
+      outline: none;
+      letter-spacing: 0.02em;
+      list-style: none;
+      transition: color 0.2s;
+    }
+    summary::-webkit-details-marker { color: var(--accent);}
+    details > *:not(summary) {
+      margin-top: 1rem;
+      color: #a0f0c0;
+      font-size: 1.08rem;
+      line-height: 1.5;
+    }
+    /* Contact form */
+    .contact-form {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      max-width: 450px;
+      margin: 2rem auto 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 0.75rem 1rem; margin-bottom: 1rem;
+      border-radius: 8px; border: 1px solid #333; font-size: 1rem; background: #232323; color: var(--text);
+    }
+    .contact-form button {
+      background: var(--accent); color: #0a0a0a; font-weight: bold;
+      border: none; border-radius: 999px; padding: 0.75rem 2rem; font-size: 1.1rem; cursor: pointer;
+      transition: background 0.2s;
+    }
     .contact-form button:active { background: #00cc77; }
-    .center { text-align: center; }
-    .audit-btn { display: inline-block; margin: 2rem auto 0 auto; background: linear-gradient(90deg,#fd5949,#d6249f,#285AEB); color: #fff; border: none; border-radius: 999px; padding: 1rem 2.5rem; font-size: 1.25rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px #fd594933, 0 2px 8px #285AEB22; transition: box-shadow 0.2s, transform 0.1s, background 0.2s; }
-    .audit-btn:hover, .audit-btn:focus { background: linear-gradient(90deg,#fd5949,#ff9966,#fa7e1e,#d6249f,#285AEB); transform: translateY(-2px) scale(1.03);}
-    .audit-btn:active { background: linear-gradient(90deg,#d6249f,#fd5949,#285AEB); transform: translateY(2px) scale(0.97);}
-    .modal-bg { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0008; z-index: 2000; align-items: center; justify-content: center; }
-    .modal-bg.active { display: flex; }
-    .modal { background: #fff; padding: 2rem 2.5rem; border-radius: 16px; max-width: 340px; width: 100%; box-shadow: 0 8px 32px #000a; text-align: center; }
-    .modal input { width: 100%; padding: 0.7rem 1rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
-    .modal button { background: #00ff99; color: #111; font-weight: bold; border: none; border-radius: 999px; padding: 0.7rem 2rem; font-size: 1.1rem; cursor: pointer; }
-    .modal button:active { background: #00cc77; }
-    .modal .close { background: none; color: #d6249f; border: none; font-size: 1.2rem; font-weight: bold; float: right; cursor: pointer; }
-    .hide { display: none !important; }
-    footer { text-align: center; color: #888; font-size: 1rem; margin-top: 3rem; padding: 2rem 0 1rem 0; border-top: 1px solid #eee; background: #f8f9fa; }
+    /* Instagram Button */
+    .insta-btn {
+      display: inline-block;
+      margin: 2.5rem auto 0 auto;
+      background: linear-gradient(90deg, #fd5949 0%, #d6249f 50%, #285AEB 100%);
+      color: #fff; border: none; border-radius: 999px;
+      padding: 1rem 2.5rem; font-size: 1.25rem; font-weight: 700;
+      cursor: pointer; box-shadow: 0 4px 16px #fd594933, 0 2px 8px #285AEB22;
+      transition: box-shadow 0.2s, transform 0.1s, background 0.2s;
+      text-decoration: none; text-align: center;
+    }
+    .insta-btn:hover, .insta-btn:focus {
+      background: linear-gradient(90deg, #fd5949 0%, #ff9966 25%, #fa7e1e 50%, #d6249f 75%, #285AEB 100%);
+      box-shadow: 0 8px 24px #fd594955, 0 4px 16px #285AEB33;
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .insta-btn:active {
+      background: linear-gradient(90deg, #d6249f 0%, #fd5949 50%, #285AEB 100%);
+      box-shadow: 0 2px 4px #fd594922, 0 1px 4px #285AEB11;
+      color: #eee;
+      transform: translateY(2px) scale(0.97);
+    }
+    footer {
+      text-align: center; color: #555; font-size: 1rem;
+      margin-top: 3rem; padding: 2rem 0 1rem 0; border-top: 1px solid #222; background: #0a0a0a;
+    }
   </style>
 </head>
 <body>
-  <!-- Header with logo and nav -->
+  <!-- Sticky Header -->
   <header>
-    <div class="logo-wrap">
-      <img src="logo.png alt="Welgiene Logo" class="logo-img">
-      <span class="brand-title">Welgiene</span>
-    </div>
-    <nav>
-      <a href="#index">Home</a>
-      <a href="#dimensions">Dimensions</a>
-      <a href="#contact">Contact</a>
-      <button class="auth-btn" id="open-auth">Sign Up / Log In</button>
-    </nav>
+    <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/70406780/a4d265d8-9a32-4a9e-ac4c-e87d83d31458/logo.jpg" alt="Welgiene Logo" class="logo-img">
+    <span class="brand-title">Welgiene</span>
   </header>
 
-  <!-- Auth Modal -->
-  <div class="modal-bg" id="auth-modal">
-    <div class="modal">
-      <button class="close" id="close-auth">&times;</button>
-      <h2>Sign Up / Log In</h2>
-      <form id="auth-form" autocomplete="off">
-        <input type="email" id="auth-email" placeholder="Email Address" required>
-        <button type="submit">Continue</button>
-      </form>
-      <div id="auth-msg" style="color:#d6249f;margin-top:1rem;"></div>
-    </div>
-  </div>
-
-  <!-- Main Content -->
   <div class="container">
-    <!-- Index Section -->
-    <section class="section" id="index">
-      <h1>Safeguard Your Wellness</h1>
-      <div class="center" style="font-size:1.25rem;max-width:700px;margin:1.5rem auto;">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-logo-bg">
+        <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/70406780/a4d265d8-9a32-4a9e-ac4c-e87d83d31458/logo.jpg" alt="Welgiene Logo">
+        <div class="hero-title">Safeguard Your Wellness</div>
+      </div>
+      <div class="hero-text">
         Witness widening well-being worldwide with Welgiene.<br>
         <strong>Get Well.</strong>
       </div>
-      <div class="center">
-        <button class="audit-btn" id="go-audit">Free Wellness Habits Audit</button>
+      <div style="text-align:center;">
+        <a class="insta-btn" href="https://instagram.com/welgiene" target="_blank">Learn More on Instagram</a>
       </div>
     </section>
 
+    <hr />
+
     <!-- Dimensions Section -->
-    <section class="section" id="dimensions">
+    <section id="dimensions">
       <h2>Dimensions of Wellness</h2>
       <div class="cards-grid">
         <details><summary>Spiritual</summary><p>Discovering purpose, meaning, and harmony in life through beliefs, values, and ethics that guide your actions and foster inner peace.</p></details>
@@ -115,84 +250,26 @@
       </div>
     </section>
 
+    <hr />
+
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <section id="contact">
       <h2>Contact Us</h2>
       <form class="contact-form" id="contact-form">
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email Address" required>
         <textarea name="message" placeholder="How can we help you?" rows="5" required></textarea>
         <button type="submit">Send</button>
-        <div id="contact-msg" style="margin-top:1rem;color:#00cc77;"></div>
+        <div id="contact-msg" style="margin-top:1rem;color:var(--accent);"></div>
       </form>
     </section>
   </div>
 
-  <!-- Footer -->
   <footer>
     © 2025 welgiene.com. All rights reserved.
-    <br>
-    <a href="download-emails.html" style="color:#00ff99;font-size:0.95em;">(Admin: Download Signups)</a>
   </footer>
-
-  <!-- PWA Service Worker -->
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-  </script>
-  <!-- Main JS for Auth, Audit, and Storage -->
-  <script>
-    // --- Auth Modal Logic ---
-    const openAuth = document.getElementById('open-auth');
-    const authModal = document.getElementById('auth-modal');
-    const closeAuth = document.getElementById('close-auth');
-    const authForm = document.getElementById('auth-form');
-    const authEmail = document.getElementById('auth-email');
-    const authMsg = document.getElementById('auth-msg');
-    let loggedInEmail = localStorage.getItem('welgiene_user_email') || null;
-
-    function showAuthModal(msg = "") {
-      authModal.classList.add('active');
-      authMsg.textContent = msg;
-      authEmail.value = loggedInEmail || "";
-      authEmail.focus();
-    }
-    function hideAuthModal() { authModal.classList.remove('active'); }
-
-    openAuth.onclick = () => showAuthModal();
-    closeAuth.onclick = hideAuthModal;
-    authModal.onclick = e => { if(e.target === authModal) hideAuthModal(); };
-
-    authForm.onsubmit = function(e) {
-      e.preventDefault();
-      const email = authEmail.value.trim().toLowerCase();
-      if (!email || !email.match(/^[\w\.-]+@[\w\.-]+\.\w+$/)) {
-        authMsg.textContent = "Enter a valid email address.";
-        return;
-      }
-      localStorage.setItem('welgiene_user_email', email);
-      loggedInEmail = email;
-      // Save email to local list for download
-      let emails = JSON.parse(localStorage.getItem('welgiene_signups') || '[]');
-      if (!emails.includes(email)) {
-        emails.push(email);
-        localStorage.setItem('welgiene_signups', JSON.stringify(emails));
-      }
-      hideAuthModal();
-      alert("Signed in as " + email);
-    };
-
-    // --- Audit Button Logic ---
-    document.getElementById('go-audit').onclick = function() {
-      if (!loggedInEmail) {
-        showAuthModal("Please sign up or log in to access the free audit.");
-        return;
-      }
-      window.location.href = "audit.html";
-    };
-
-    // --- Contact Form (dummy, just shows message) ---
+    // Contact form dummy handler
     document.getElementById('contact-form').onsubmit = function(e) {
       e.preventDefault();
       document.getElementById('contact-msg').textContent = "Thank you! We'll be in touch soon.";
