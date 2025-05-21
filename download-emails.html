@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Download Welgiene Signups</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; color: #222; margin: 0; }
+    .container { max-width: 440px; margin: 4rem auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 12px #00ff9922; padding: 2rem; text-align: center;}
+    button { background: #00ff99; color: #111; font-weight: bold; border: none; border-radius: 999px; padding: 0.7rem 2rem; font-size: 1.1rem; cursor: pointer; }
+    button:active { background: #00cc77; }
+    .emails { margin-top: 2rem; text-align: left; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Download Welgiene Signups</h2>
+    <button id="download-btn">Download as TXT</button>
+    <div class="emails" id="emails"></div>
+  </div>
+  <script>
+    function getEmails() {
+      return JSON.parse(localStorage.getItem('welgiene_signups') || '[]');
+    }
+    document.getElementById('download-btn').onclick = function() {
+      const emails = getEmails();
+      const blob = new Blob([emails.join('\n')], {type: "text/plain"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "welgiene_signups.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+    // Show emails
+    document.getElementById('emails').innerHTML = "<b>Emails:</b><br>" + getEmails().map(e=>e).join("<br>");
+  </script>
+</body>
+</html>

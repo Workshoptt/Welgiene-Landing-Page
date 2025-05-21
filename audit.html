@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wellness Habits Audit – Welgiene</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <meta name="theme-color" content="#00ff99">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; color: #222; margin: 0; }
+    .container { max-width: 540px; margin: 3rem auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 12px #00ff9922; padding: 2rem; }
+    h1 { color: #00ff99; text-align: center; font-size: 2rem; }
+    .audit-q { margin: 1.5rem 0; }
+    .audit-q label { font-weight: 600; }
+    .audit-q input[type=range] { width: 100%; }
+    .center { text-align: center; }
+    .score { font-size: 1.3rem; color: #d6249f; margin: 1rem 0; }
+    .logout-btn { background: #fd5949; color: #fff; border: none; border-radius: 999px; padding: 0.6rem 2rem; font-weight: 700; font-size: 1.1rem; cursor: pointer; margin-top: 2rem; }
+    .logout-btn:active { background: #d6249f; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Wellness Habits Audit</h1>
+    <div id="welcome"></div>
+    <form id="audit-form">
+      <div class="audit-q">
+        <label>How often do you exercise each week?</label>
+        <input type="range" min="0" max="10" value="5" name="q1">
+      </div>
+      <div class="audit-q">
+        <label>How would you rate your sleep quality?</label>
+        <input type="range" min="0" max="10" value="5" name="q2">
+      </div>
+      <div class="audit-q">
+        <label>How balanced is your nutrition?</label>
+        <input type="range" min="0" max="10" value="5" name="q3">
+      </div>
+      <div class="audit-q">
+        <label>How often do you practice mindfulness or meditation?</label>
+        <input type="range" min="0" max="10" value="5" name="q4">
+      </div>
+      <div class="audit-q">
+        <label>How would you rate your emotional well-being?</label>
+        <input type="range" min="0" max="10" value="5" name="q5">
+      </div>
+      <div class="center">
+        <button type="submit" class="audit-btn">Submit Audit</button>
+      </div>
+    </form>
+    <div class="score" id="score"></div>
+    <div class="center">
+      <button class="logout-btn" id="logout">Log Out</button>
+    </div>
+  </div>
+  <script>
+    // Require login
+    const email = localStorage.getItem('welgiene_user_email');
+    if (!email) {
+      alert("Please sign up or log in to access the audit.");
+      window.location.href = "index.html";
+    } else {
+      document.getElementById('welcome').innerHTML = `<div class="center" style="margin-bottom:1.5rem;">Signed in as <b>${email}</b></div>`;
+    }
+    // Load previous score if any
+    const scoreDiv = document.getElementById('score');
+    const LS_KEY = `welgiene_audit_score_${email}`;
+    if (localStorage.getItem(LS_KEY)) {
+      scoreDiv.textContent = "Previous Audit Score: " + localStorage.getItem(LS_KEY) + " / 50";
+    }
+    document.getElementById('audit-form').onsubmit = function(e) {
+      e.preventDefault();
+      let total = 0;
+      Array.from(this.elements).forEach(el => {
+        if (el.type === "range") total += parseInt(el.value, 10);
+      });
+      localStorage.setItem(LS_KEY, total);
+      scoreDiv.textContent = "Your Audit Score: " + total + " / 50";
+    };
+    document.getElementById('logout').onclick = function() {
+      localStorage.removeItem('welgiene_user_email');
+      window.location.href = "index.html";
+    };
+  </script>
+</body>
+</html>
