@@ -191,23 +191,25 @@
 <body>
 
 <header>
-<nav style="background:#111; padding:1rem 2rem; display:flex; justify-content:center; align-items:center; border-bottom:1px solid #222; gap: 2rem; flex-wrap: wrap;">
-  <a href="index.html" style="display:flex; align-items:left; text-decoration:none; margin-right:2rem;" aria-label="Welgiene Home">
-    <img src="assets/logo.png" alt="Welgiene Logo" style="height:40px; width:auto; margin-right:0.75rem;" />
-  </a>
-  <input type="checkbox" id="nav-toggle" />
-  <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </label>
-  <a href="home.html" style="color:#00ff99; text-decoration:none; margin:0 1rem; font-weight:600; font-size:1.1rem;">Home</a>
-  <a href="learn.html" style="color:#00ff99; text-decoration:none; margin:0 1rem; font-weight:600; font-size:1.1rem;">Learn</a>
-  <a href="contact.html" style="color:#00ff99; text-decoration:none; margin:0 1rem; font-weight:600; font-size:1.1rem;">Contact Us</a>
-  <span style="color:#888; margin:0 1rem; font-weight:600; font-size:1.1rem; opacity:0.5; cursor:not-allowed; text-decoration:line-through;" title="Coming Soon">Docs</span>
-  <span style="color:#888; margin:0 1rem; font-weight:600; font-size:1.1rem; opacity:0.5; cursor:not-allowed; text-decoration:line-through;" title="Coming Soon">Community</span>
-  <span style="color:#888; margin:0 1rem; font-weight:600; font-size:1.1rem; opacity:0.5; cursor:not-allowed; text-decoration:line-through;" title="Coming Soon">Pricing</span>
-</nav>
+  <nav style="background:#111; padding:1rem 2rem; display:flex; justify-content:center; align-items:center; border-bottom:1px solid #222; gap: 2rem; flex-wrap: wrap;">
+    <a href="home.html" style="display:flex; align-items:left; text-decoration:none; margin-right:2rem;" aria-label="Welgiene Home">
+      <img src="assets/logo.png" alt="Welgiene Logo" style="height:40px; width:auto; margin-right:0.75rem;" />
+    </a>
+    <input type="checkbox" id="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="learn.html">Learn</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#" style="color:#888; cursor:not-allowed; text-decoration:line-through;" aria-disabled="true" tabindex="-1" title="Coming Soon">Docs</a>
+      <a href="#" style="color:#888; cursor:not-allowed; text-decoration:line-through;" aria-disabled="true" tabindex="-1" title="Coming Soon">Community</a>
+      <a href="#" style="color:#888; cursor:not-allowed; text-decoration:line-through;" aria-disabled="true" tabindex="-1" title="Coming Soon">Pricing</a>
+    </div>
+  </nav>
 </header>
 
 <main>
