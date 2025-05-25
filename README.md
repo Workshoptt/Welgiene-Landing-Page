@@ -7,3 +7,4 @@ Welgiene is supporting everyone through the active pursuit of optimal well-being
 Please note that this is not a service meant to replace the counsel of a medical or naturopathic doctor.
 
 Love you!
+welgiene.com
